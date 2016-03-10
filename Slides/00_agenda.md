@@ -10,7 +10,8 @@
 
 *Définition wikipedia*
 
-> Une antinomie, qui vient du grec ancien « ἀντινομία » <br> (« antinomía ») signifiant une « contradiction entre les lois&nbsp;», est un type de contradiction logique, dans lequel des déclarations mutuellement contradictoires sont tout aussi bien fondées et prouvées (dans le cas des systèmes formels).
+> Antinomie, grec ancien « ἀντινομία » (« antinomía ») signifiant une « contradiction entre les lois&nbsp;»<br><br>
+> Est un type de contradiction logique, dans lequel des déclarations mutuellement contradictoires sont tout aussi bien fondées et prouvées (dans le cas des systèmes formels).
 
 <br>
 <!-- .element class="fragment fade-in" -->
@@ -24,4 +25,8 @@
 
 - [Arduino](#/1)
 - [Docker](#/2)
+
+<figure style="margin-top: 200px; float: right; width: 50%">
+    <img src="ressources/docker-raspberry-pi-arduino.png" alt=""/>
+</figure>
 

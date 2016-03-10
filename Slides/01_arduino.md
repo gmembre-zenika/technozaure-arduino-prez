@@ -10,22 +10,24 @@
 ## Arduino : qu'est ce ?
 
 
-<figure style="position: absolute; top: 100px; right: 0; width: 50%">
+<figure style="position: absolute; top: 350px; right: 0; width: 50%">
     <img src="ressources/arduinounosmd2.jpg" alt="" />
 </figure>
 
-Arduino Uno
+**www.arduino.cc**
+> Arduino is an open-source prototyping platform based on easy-to-use hardware and software.
 
-- Microcontroleur 8 bit @ 16 MHz
+<br>
+
+Caractéristiques d'un Arduino Uno
+
+- Microcontroleur ATMEL 8 bit @ 16 MHz
  - 32 Ko de Flash
- - 2Ko de SRAM
- - 1Ko de EEPROM
- - 14x I/O digitale
-   - 6x PWM
-   - 2x Serie
-   - 4x SPI
+ - 2Ko de SRAM + 1Ko de EEPROM
+ - 14x I/O digitales
+   - dont 6x PWM + 2x Serie + 4x SPI
  - 8x entrées analogiques
-   - 2x I2C
+   - dont 2x I2C
 
 
 
@@ -48,7 +50,7 @@ Arduino Uno
 ## Pourquoi ça marche ?
 <br>
 
-> Il fût un temps où pour programmer un micro controleur, il fallait un microcontroleur programmé...
+> Pour programmer un micro controleur, <br>il faut un microcontroleur programmé...
 
 <br>
 Problème de la poule et l'oeuf
@@ -61,20 +63,19 @@ Problème de la poule et l'oeuf
 
 ## Solutions apportées
 
-<figure style="position: absolute; top: 100px; right: 0; width: 35%">
+<figure style="position: absolute; top: 500px; right: 0; width: 30%">
     <img src="ressources/arduino_Logo.png" alt=""/>
 </figure>
 
 <br>
 Arduino intègre sur une même platine
 
- - un programmateur (déjà programmé...)
- - une connectique USB
- - un microcontroleur de "run"
- - des broches faciles d'accès
- - un format de carte constant au fil des versions
- 
- - Fournit un SDK + IDE simple d'utilisation libre et gratuit
+ - un programmateur (déjà programmé...) + un microcontroleur de "run"
+ - une prise USB + des connecteurs multi-fonctions
+ - Logiciels libre et gratuit
+    - bootloader ( ~ "bios d'un PC" )
+    - SDK + chaine de cross compilation + IDE simple
+    - Multi plateforme
 
 
 
@@ -91,9 +92,8 @@ Shield = carte d'extension se branchant sur les pins de la carte
 - USB avec un PC
  -  Alimentation de la carte + shield
  -  Port série émulé sur USB
-   - Parmi les standards de l'industrie en carte de dev
    - Facile d'accès
-   - Ré-utilisation importante de (vieux) outils
+   - Interopérable
 <br> <br> <br>
 
 Accès linux
@@ -104,23 +104,6 @@ Mac OS X
 ```bash
 screen /dev/cu.usbmodem1421
 ```
-
-
-
-## Philosophie
-**www.arduino.cc**
-> Arduino is an open-source prototyping platform based on easy-to-use hardware and software.
-
-<br>
-
-- Schéma électronique de la platine libre et opensource
-<br> <br>
-
-- Logiciels libre et opensource :
-  - bootloader ( ~ "bios d'un PC" )
-  - SDK
-  - IDE
-  - Multi plateforme
 
 
 
@@ -135,14 +118,6 @@ screen /dev/cu.usbmodem1421
     <img src="ressources/SB-Freeduino_v2.3.jpg" alt="" style="margin: auto;"/>
     <figcaption>SB-Freeduino</figcaption>
 </figure>
-
-
-
-## Matériel présenté
-
-Arduino micro
-
-![](ressources/materiel-presentation.jpg)
 
 
 
@@ -177,11 +152,19 @@ analogWrite()
 
 
 
-## Schéma electronique
+## Schéma électronique
 
 <figure style="margin-top: 0%; margin-left: 15%; width: 70%">
     <img src="ressources/led-pin-13.jpg" alt=""/>
 </figure>
+
+
+
+## Matériel présenté
+
+Arduino micro
+
+![](ressources/materiel-presentation.jpg)
 
 
 
@@ -211,5 +194,5 @@ Consommation en Idle
 | Plateforme | Idle (W)  | Burn (W)
 |------------|-----|-----|
 | Arduino    | 0.170 (=> 0.011) | 0.2 |
-| Rpbi 2     | 1,1  |  4.5 |
+| Rpbi 2     | 1.1  |  4.5 |
 

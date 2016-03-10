@@ -16,7 +16,7 @@ export VOLUME_PACKAGE="/$PWD/package.json:/data/package.json"
 export VOLUME_PDF_GENERATE="/$PWD/PDF:/data/PDF"
 export VOLUME_PDF_PUBLISH="/$PWD/PDF:/data/node_modules/zenika-formation-framework/pdf"
 # Docker image related informations
-export DOCKER_IMAGE_NAME="zenika/formation-framework"
+export DOCKER_IMAGE_NAME="gme/formation--framework"
 export DOCKER_IMAGE_VERSION="latest"
 
 GREEN='\033[0;32m'
@@ -50,10 +50,10 @@ open-url() {
 
 retrieveFormationVersion(){
   VERSION=`cat package.json | sed -n -e '/"zenika-formation-framework":/ s/^.*#tags\/\(.*\)".*/\1/p'`
-  if [ ! -z $VERSION ]
-  then
-    export DOCKER_IMAGE_VERSION=$VERSION
-  fi
+  #if [ ! -z $VERSION ]
+  #then
+  #  export DOCKER_IMAGE_VERSION=$VERSION
+  #fi
 }
 
 getDockerAddress(){

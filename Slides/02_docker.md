@@ -29,7 +29,7 @@
   - Architecture matérielle différente : 686, x86_64, ARM...
 - Les images docker sont liées à une architecture en particulier : pas de possibilité d'executer sur du ARM une image x86_64
 - le docker hub et le client docker ne font pas (encore?) apparaitre cette information
-- Utilisation d'image construite sur un ARM
+- Utilisation d'image construite spécifiquement pour ARM
 
 
 
@@ -41,7 +41,7 @@ Ici, ce qui nous interesse est le partage du noyau entre l'hôte et l'invité
 
 
 ## Accès au port série depuis un conteneur
-
+<br>
 Sous linux, un fichier spécial ```/dev/ttyACM0``` est créé lors du branchement de l'arduino
 
 Pour se connecter à l'arduino : 
@@ -58,13 +58,14 @@ docker run -v /dev/ttyACM0:/dev/ttyACM0 monimage
 
 <br><br>
 
-**Si seulement...**
+<!-- .element class="fragment fade-in" -->
+**Si seulement...** <br>
+Pour des questions de «sécurité», la commande précédente ne passe pas, le conteneur n'a pas les droits suffisants.
 
 
 
 ## Un peu de sécurité
 
-- Pour des questions de «sécurité», la commande précédente ne passe pas, le conteneur n'a pas les droits suffisants
 - Il faut passer en mode **privileged**
 ```shell
 docker run --privileged ...
@@ -86,32 +87,31 @@ docker run --device=/dev/ttyACM0:/dev/ttyACM0 ...
 - Une fois démarré, le port série est accessible
 - Il est possible de conteneuriser l'environnement de build
 - Attention : docker et les IHM ne sont pas copains
-  - il faut passer par un serveur X en mémoire (Xvfb) et se connecter en VNC, ou utiliser la socker X11...
-- Plusieurs projets pour arduino
-  - Arduino CLI
+  - il faut passer par un serveur X en mémoire (Xvfb) et se connecter en VNC, ou utiliser la socket X11...
+- Plusieurs projets en CLI pour arduino
+  - Arduino depuis la 1.5
   - PlatformIO
-  - Ino (non maintenu)
-- Pas d'image dispo, à construire
+- Pas d'image dispo, à construire soit même
+- J'ai testé PlatformIO : pas prévu pour être installable sans interaction utilisateur, il télécharge les dépendances au run et non à l'installation
 
 
 
 ## Mais encore ?
 
-- L'arduino est autonome et peut communiquer avec un ordinateur.
-  - Exemples : relevé de sondes de temperatures, pilotage de radiateur, robot simple, machine enigma
+- L'arduino est autonome
+  - Exemples : relevé de sondes de temperatures et pilotage de radiateur, drône quadricoptère, machine enigma...
   - Contraintes : le programme doit tenir dans 28 Ko de flash et 2 Ko de RAM...
 
 <br>
-Dès qu'il s'agit de faire plus intelligent (robot autonome, reconnaissance de voix, débitmètre de tireuse de bière...) un ordinateur plus puissant peut être nécessaire.
+Dès qu'il s'agit de faire plus intelligent (robot autonome, reconnaissance de voix, débitmètre de tireuse de bière...) une CPU plus puissante va être nécessaire.
 
-- Quid de la communication entre les 2 ?
+- Utiliser un ordinateur qui émet des ordres à l'arduino
 
 
 
-## Communication
+## Communication basique
 
 - Solution naïve : développer un programme coté ordinateur émettant des ordres au format texte via le port USB à l'arduino
-  - L'arduino exécute le programme maitre et ne "remonte" que les infos
   - Très simple à mettre en oeuvre
   - Ultra documenté
   - Exemple : https://gitlab.com/coliss86/arduino-controller
@@ -130,6 +130,7 @@ Command available :
       <pin number [2-9]>=<0,1>
       h - help
       s - i/o status
+      t - temperature
 ```
 
 
@@ -137,12 +138,9 @@ Command available :
 ## Solution plus évoluée
 
 - Sketch Firmata 
-  - Libre et open source
+  - Libre et open source https://github.com/firmata/arduino
   - Protocole binaire, documenté
-  - L'arduino n'est plus qu'un esclave et ne contient plus aucune logique
-  - L'ordinateur exécute le programme et lui délègue les taches au plus proche du matériel
-  - https://github.com/firmata/arduino
-  - De nombreux languages ont une lib kivabien &copy; <br>python, perl, ruby, java, js, php, Haskell, golang...
+  - De nombreux languages ont une lib kivabien &copy; <br>python, perl, ruby, java, php, Haskell, golang, js ...
 
 
 
@@ -170,6 +168,8 @@ board.on("ready", function() {
 ## Appli de démo
 
 - Client twitter qui réagit au tweet sur #technozaure **~90 lignes de code**
+- s'exécute dans un conteneur sur le raspberry 
+
 https://gitlab.com/coliss86/technozaure-arduino
 
 ```javascript
@@ -182,7 +182,7 @@ board.on("ready", function() {
   var ledPins = [2,4,5,6,7,8,9,10,11,12];
   var leds = new five.Leds(ledPins);
 ...
-  client.stream('statuses/filter', {track: '@technozaure'},  function(stream){
+  client.stream('statuses/filter', {track: '#technozaure'},  function(stream){
     stream.on('data', function(tweet) {
       console.log(tweet.text);
       board.wait(60, function(){
@@ -207,8 +207,8 @@ board.on("ready", function() {
 
 
 <!-- .slide: class="page-questions" -->
+<div style="position: absolute; margin-top: 700px; right: 20px; text-align: right; font-size: 70%">Short Circuit (1986)<br>Appelez-moi Johnny 5 (1988)</div>
 
 <figure style="height: 100%">
     <img src="ressources/j5_and_toronto-q.jpg" alt=""/>
 </figure>
-
