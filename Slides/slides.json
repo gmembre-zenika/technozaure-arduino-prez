@@ -1,3 +1,6 @@
 [
-  "01_presentation.md"
+  "00_agenda.md",
+  "01_arduino.md",
+  "02_docker.md"
+
 ]
